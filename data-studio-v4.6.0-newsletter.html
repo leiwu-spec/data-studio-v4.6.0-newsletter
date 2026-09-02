@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Data Studio V4.6.0</title>
+    <!--[if mso]>
+      <style>
+        table { border-collapse: collapse; border-spacing: 0; border: 0; margin: 0; }
+        div, td { padding: 0; }
+        div { margin: 0 !important; }
+      </style>
+    <![endif]-->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@700&family=Roboto+Condensed:ital,wght@0,700;1,900&display=swap");
+
+      body,
+      table,
+      td,
+      div,
+      p,
+      a,
+      span {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+
+      table {
+        border-collapse: collapse;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+
+      img {
+        display: block;
+        border: 0;
+        outline: none;
+        text-decoration: none;
+        -ms-interpolation-mode: bicubic;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+        color: #102d5c;
+        font-family: Inter, Arial, Helvetica, sans-serif;
+      }
+
+      .container {
+        width: 840px;
+        max-width: 840px;
+      }
+
+      .poster-shell {
+        width: 840px;
+        height: 630px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+
+      .poster-canvas {
+        position: relative;
+        width: 1200px;
+        height: 900px;
+        overflow: hidden;
+        transform: scale(0.7);
+        transform-origin: top left;
+        isolation: isolate;
+      }
+
+      .poster-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -2;
+        display: flex;
+        width: 1193px;
+        height: 900px;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: #ffffff;
+      }
+
+      .poster-background img {
+        display: none;
+      }
+
+      .header-bar {
+        position: absolute;
+        top: 7px;
+        left: 13px;
+        display: flex;
+        width: 860px;
+        height: 96px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 17px 48px 20px 51px;
+      }
+
+      .header-left {
+        display: flex;
+        align-items: flex-end;
+        gap: 10px;
+        color: #7a6e8a;
+        font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 20px;
+        line-height: normal;
+        white-space: nowrap;
+      }
+
+      .header-left p {
+        margin: 0;
+      }
+
+      .header-left .dot {
+        color: #b8a8c8;
+      }
+
+      .header-left .version {
+        color: #3b5bdb;
+        font-weight: 700;
+      }
+
+      .header-left .release strong {
+        font-weight: 600;
+      }
+
+      .hero-section {
+        position: absolute;
+        top: 51px;
+        left: 9px;
+        display: flex;
+        width: 1132px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 48px 48px 24px;
+        line-height: 0;
+        word-break: break-word;
+      }
+
+      .hero-title {
+        position: relative;
+        width: 613px;
+        margin: 0;
+        color: #1d40d8;
+        font-family: Outfit, "Arial Black", sans-serif;
+        font-size: 100px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      .hero-title .dark {
+        color: #0b1f3a;
+      }
+
+      .hero-subtitle {
+        position: absolute;
+        top: 199px;
+        left: 519px;
+        margin: 0;
+        color: #000000;
+        font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 28px;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+        line-height: normal;
+        white-space: nowrap;
+      }
+
+      .hero-description {
+        position: absolute;
+        top: 259px;
+        left: 58px;
+        width: 1054px;
+        margin: 0;
+        color: rgba(0, 0, 0, 0.8);
+        font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 18px;
+        font-weight: 300;
+        letter-spacing: 0.2px;
+        line-height: normal;
+      }
+
+      .hero-description strong {
+        font-weight: 600;
+      }
+
+      .feature-list {
+        position: absolute;
+        top: 374px;
+        left: 0;
+        display: flex;
+        width: 1161px;
+        height: 482px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 0 48px 0 28px;
+      }
+
+      .feature-row {
+        display: flex;
+        width: 100%;
+        height: 108px;
+        flex: 0 0 108px;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .feature-number {
+        width: 96px;
+        flex: 0 0 96px;
+        margin: 0;
+        color: rgba(20, 23, 41, 0.3);
+        font-family: Outfit, "Arial Black", sans-serif;
+        font-size: 72px;
+        font-weight: 700;
+        letter-spacing: -2px;
+        line-height: normal;
+        text-align: right;
+      }
+
+      .feature-row:first-child .feature-number {
+        font-family: "Roboto Condensed", "Arial Narrow", sans-serif;
+        font-style: italic;
+        font-weight: 900;
+      }
+
+      .feature-row:nth-child(2) .feature-number {
+        font-family: "Roboto Condensed", "Arial Narrow", sans-serif;
+        font-style: normal;
+        font-weight: 700;
+      }
+
+      .feature-card {
+        display: flex;
+        min-width: 0;
+        min-height: 108px;
+        flex: 1 0 0;
+        align-items: center;
+        padding: 22px 26px;
+        border: 1.5px solid rgba(255, 255, 255, 0.9);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8), 0 6px 20px rgba(51, 64, 153, 0.08);
+      }
+
+      .feature-card p {
+        min-width: 0;
+        flex: 1 0 0;
+        margin: 0;
+        color: #4a4260;
+        font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 1.6;
+        word-break: break-word;
+      }
+
+      .feature-card .emoji {
+        font-size: 40px;
+        line-height: 1.6;
+        vertical-align: -0.08em;
+      }
+
+      .feature-card .emoji.target {
+        font-size: 48px;
+      }
+
+      .ip-character {
+        position: absolute;
+        top: 34px;
+        left: 897px;
+        width: 224px;
+        height: 204px;
+      }
+
+      .ip-character img {
+        width: 224px;
+        height: 204px;
+        object-fit: cover;
+      }
+
+      .ip-sparkle {
+        position: absolute;
+        top: 27px;
+        left: 1068px;
+        z-index: 1;
+        color: #000000;
+        font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 28px;
+        line-height: normal;
+      }
+
+      .union {
+        position: absolute;
+        top: 128px;
+        left: 1033px;
+        width: 108.14px;
+        height: 23.104px;
+      }
+
+      .union img {
+        position: absolute;
+        top: -7.4px;
+        left: -7.4px;
+        width: 122.94px;
+        height: 37.904px;
+        max-width: none;
+      }
+
+      .button-row {
+        padding: 24px 32px;
+        border-top: 1px solid #cfe8fa;
+        text-align: right;
+      }
+
+      .button {
+        display: inline-block;
+        border-radius: 8px;
+        padding: 10px 20px;
+        background: #1d4ed8;
+        color: #ffffff;
+        font-family: Inter, Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.35;
+      }
+
+      .button-secondary {
+        margin-right: 8px;
+        border: 1px solid #bbddfb;
+        background: #ffffff;
+        color: #102d5c;
+      }
+
+      @media screen and (max-width: 840px) {
+        .container {
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+
+        .poster-shell {
+          width: 100%;
+          overflow-x: auto;
+          overflow-y: hidden;
+        }
+
+        .button-row {
+          padding: 20px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body style="margin: 0; padding: 0; background: #ffffff">
+    <div style="display: none; max-height: 0; overflow: hidden; opacity: 0">
+      Data Studio V4.6.0 — Smarter Table Recommendations.
+    </div>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background: #ffffff">
+      <tr>
+        <td align="center" style="padding: 40px 16px">
+          <table role="presentation" width="840" class="container" cellpadding="0" cellspacing="0" style="width: 840px; max-width: 840px">
+            <tr>
+              <td>
+                <table
+                  role="presentation"
+                  width="100%"
+                  cellpadding="0"
+                  cellspacing="0"
+                  style="background: #ffffff; border: 1px solid #cfe8fa; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 28px rgba(16, 45, 92, 0.08)"
+                >
+                  <tr>
+                    <td style="padding: 0">
+                      <div class="poster-shell" data-name="Data Studio V4.6.0">
+                        <div class="poster-canvas" data-node-id="0:4" data-name="画板">
+                          <div class="poster-background" data-node-id="0:5">
+                            <img src="https://raw.githubusercontent.com/leiwu-spec/data-studio-v4.6.0-newsletter/main/assets/di-cli-background.png" width="900" height="1193" alt="" />
+                          </div>
+
+                          <div class="header-bar" data-node-id="0:73" data-name="header-bar">
+                            <div class="header-left" data-node-id="0:74" data-name="header-left">
+                              <p data-node-id="0:75">data studio /</p>
+                              <p class="dot" data-node-id="0:76">•</p>
+                              <p class="version" data-node-id="0:77">V4.6.0</p>
+                              <p class="dot" data-node-id="0:78">•</p>
+                              <p class="release" data-node-id="0:79">release on <strong>Sep</strong></p>
+                            </div>
+                          </div>
+
+                          <section class="hero-section" data-node-id="0:71" data-name="hero-section">
+                            <h1 class="hero-title" data-node-id="0:72">
+                              <span class="dark">Data&nbsp;&nbsp;Studio</span><br />
+                              <span>V4.6.0</span>
+                            </h1>
+                            <p class="hero-subtitle" data-node-id="1:4">Smarter Table Recommendations 🧠</p>
+                            <p class="hero-description" data-node-id="3:2">
+                              &gt; <strong>Optimizing Finding Table Retrieval Using Popularity and Region Information</strong>, Agent now uses account-related context to improve table discovery, especially for ambiguous searches.
+                            </p>
+                          </section>
+
+                          <section class="feature-list" data-node-id="0:6" data-name="feature-list" aria-label="Feature list">
+                            <div class="feature-row" data-node-id="0:7" data-name="row-01">
+                              <p class="feature-number" data-node-id="0:8">1</p>
+                              <div class="feature-card" data-node-id="0:9" data-name="card-01">
+                                <p data-node-id="0:12"><span class="emoji target">🎯</span> Improve the relevance and accuracy of recommended tables</p>
+                              </div>
+                            </div>
+
+                            <div class="feature-row" data-node-id="0:13" data-name="row-02">
+                              <p class="feature-number" data-node-id="0:14">2</p>
+                              <div class="feature-card" data-node-id="0:15" data-name="card-02">
+                                <p data-node-id="0:18"><span class="emoji">🕙</span> Prioritize tables recently used by the user or project members</p>
+                              </div>
+                            </div>
+
+                            <div class="feature-row" data-node-id="0:19" data-name="row-03">
+                              <p class="feature-number" data-node-id="0:20">3</p>
+                              <div class="feature-card" data-node-id="0:21" data-name="card-03">
+                                <p data-node-id="0:24"><span class="emoji">👥</span> Prioritize tables related to the user's project</p>
+                              </div>
+                            </div>
+
+                            <div class="feature-row" data-node-id="0:25" data-name="row-04">
+                              <p class="feature-number" data-node-id="0:26">4</p>
+                              <div class="feature-card" data-node-id="0:27" data-name="card-04">
+                                <p data-node-id="0:30"><span class="emoji">🌍</span> For BI teams, prioritize tables from regions relevant to the team's location</p>
+                              </div>
+                            </div>
+                          </section>
+
+                          <div class="ip-character" data-node-id="24:3" data-name="ip-search-halfbody-flipped-transparent 1">
+                            <img src="https://raw.githubusercontent.com/leiwu-spec/data-studio-v4.6.0-newsletter/main/ip-search-halfbody-flipped-transparent.png" width="224" height="204" alt="Data Studio search assistant" />
+                          </div>
+
+                          <span class="ip-sparkle" aria-hidden="true">✨</span>
+
+                          <div class="union" data-node-id="19:289" aria-hidden="true">
+                            <img src="https://raw.githubusercontent.com/leiwu-spec/data-studio-v4.6.0-newsletter/main/assets/union.svg" width="123" height="38" alt="" />
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="button-row" align="right">
+                      <a class="button button-secondary" href="https://datasuite.shopee.io/documentations?menu_id=menu_1774925405252_1" target="_blank" rel="noopener">Open User Guide ↗</a>
+                      <a class="button" href="https://datasuite.shopee.io/studio" target="_blank" rel="noopener">Open Data Studio ↗</a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
